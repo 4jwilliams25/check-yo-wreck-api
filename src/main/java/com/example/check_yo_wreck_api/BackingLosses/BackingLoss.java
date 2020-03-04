@@ -1,9 +1,14 @@
 package com.example.check_yo_wreck_api.BackingLosses;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jdk.jfr.Timestamp;
 import lombok.Data;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
-import javax.swing.text.html.Option;
+import java.sql.Date;
 
 @Entity
 @Table(name = "backing_losses")
@@ -15,6 +20,9 @@ public class BackingLoss {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+
+    @Column
+    String accident_type;
 
     @Column
     String iv_action;
@@ -45,6 +53,14 @@ public class BackingLoss {
 
     @Column
     String cv_poi;
+
+    @JsonFormat(pattern = "MM-dd-yyyy", shape = JsonFormat.Shape.STRING)
+    @Column
+    String date_created;
+
+    @JsonFormat(pattern = "MM-dd-yyyy", shape = JsonFormat.Shape.STRING)
+    @Column
+    String date_updated;
 
     public int getId() {
         return id;

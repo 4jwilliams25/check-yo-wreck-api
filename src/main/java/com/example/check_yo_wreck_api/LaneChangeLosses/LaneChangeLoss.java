@@ -1,5 +1,6 @@
 package com.example.check_yo_wreck_api.LaneChangeLosses;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -14,6 +15,9 @@ public class LaneChangeLoss {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
+
+    @Column
+    String accident_type;
 
     @Column
     String iv_action;
@@ -32,6 +36,14 @@ public class LaneChangeLoss {
 
     @Column
     String cv_poi;
+
+    @JsonFormat(pattern = "MM-dd-yyyy", shape = JsonFormat.Shape.STRING)
+    @Column
+    String date_created;
+
+    @JsonFormat(pattern = "MM-dd-yyyy", shape = JsonFormat.Shape.STRING)
+    @Column
+    String date_updated;
 
     public int getId() {
         return id;
