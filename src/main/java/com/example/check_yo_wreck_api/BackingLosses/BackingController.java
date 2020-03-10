@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @CrossOrigin
 @RestController
@@ -34,7 +35,7 @@ public class BackingController {
     }
 
     @DeleteMapping("/{id}")
-    public String removeOneLoss(@PathVariable int id) {
+    public Optional removeOneLoss(@PathVariable int id) {
         BackingLoss backingLoss = backingService.getOneLoss(id).orElseThrow(IllegalArgumentException::new);
         return backingService.removeOneLoss(id);
     }

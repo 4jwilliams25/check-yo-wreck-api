@@ -22,8 +22,9 @@ public class LaneChangeService {
 
     public LaneChangeLoss updateOneLoss(LaneChangeLoss updatedLoss) { return laneChangeRepository.save(updatedLoss); }
 
-    public String removeOneLoss(int id) {
+    public Optional removeOneLoss(int id) {
+        Optional deletedLoss = laneChangeRepository.findById(id);
         laneChangeRepository.deleteById(id);
-        return "ID " + id + " was removed";
+        return deletedLoss;
     }
 }

@@ -22,8 +22,9 @@ public class BackingService {
 
     public BackingLoss updateOneLoss(BackingLoss updatedLoss) { return backingRepository.save(updatedLoss); }
 
-    public String removeOneLoss(int id) {
+    public Optional removeOneLoss(int id) {
+        Optional deletedLoss = backingRepository.findById(id);
         backingRepository.deleteById(id);
-        return "ID " + id + " was removed";
+        return deletedLoss;
     }
 }

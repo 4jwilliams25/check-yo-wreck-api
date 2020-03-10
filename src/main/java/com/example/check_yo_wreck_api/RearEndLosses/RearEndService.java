@@ -22,8 +22,9 @@ public class RearEndService {
 
     public RearEndLoss updateOneLoss(RearEndLoss updatedLoss) { return rearEndRepository.save(updatedLoss); }
 
-    public String removeOneLoss(int id) {
+    public Optional removeOneLoss(int id) {
+        Optional deletedLoss = rearEndRepository.findById(id);
         rearEndRepository.deleteById(id);
-        return "ID " + id + " was removed";
+        return deletedLoss;
     }
 }
